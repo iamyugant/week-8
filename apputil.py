@@ -1,23 +1,20 @@
+import numpy as np
 from collections import defaultdict
 
-
-class MarkovText(object):
-
+class MarkovText:
+    
     def __init__(self, corpus):
         self.corpus = corpus
-        self.term_dict = None  # you'll need to build this
-
+        self.tokens = corpus.split()
+        self.term_dict = None
+    
     def get_term_dict(self):
-
-        # your code here ...
-
-        self.term_dict = {}
-
-        return None
-
-
-    def generate(self, seed_term=None, term_count=15):
-
-        # your code here ...
-
-        return None
+        term_dict = defaultdict(list)
+        
+        for i in range(len(self.tokens) - 1):
+            current_word = self.tokens[i]
+            next_word = self.tokens[i + 1]
+            term_dict[current_word].append(next_word)
+        
+        self.term_dict = dict(term_dict)
+        return self.term_dict
